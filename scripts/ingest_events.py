@@ -76,10 +76,10 @@ df_clean = raw_stream.select(
     when(col("_c53") == "", "UNK").otherwise(col("_c53")).alias("ActionGeo_CountryCode"),
     col("_c56").cast("float").alias("ActionGeo_Lat"),
     col("_c57").cast("float").alias("ActionGeo_Long"),
-    
+    col("_c59").cast("long").alias("DATEADDED"),
     # Source
     col("_c60").alias("SOURCEURL")
-) \
+   ) \
 .where(col("GLOBALEVENTID").isNotNull()) \
 .where(col("SQLDATE").isNotNull()) \
 .where(col("ActionGeo_Lat").isNotNull()) \

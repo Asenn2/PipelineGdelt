@@ -1,0 +1,91 @@
+columns substreams version: 1
+36 columns:
+1 substreams for column `GLOBALEVENTID`:
+	GLOBALEVENTID
+1 substreams for column `SQLDATE`:
+	SQLDATE
+2 substreams for column `Actor1Name`:
+	Actor1Name.size
+	Actor1Name
+2 substreams for column `Actor1CountryCode`:
+	Actor1CountryCode.size
+	Actor1CountryCode
+2 substreams for column `Actor1Type1Code`:
+	Actor1Type1Code.size
+	Actor1Type1Code
+2 substreams for column `Actor1Type2Code`:
+	Actor1Type2Code.size
+	Actor1Type2Code
+2 substreams for column `Actor1Type3Code`:
+	Actor1Type3Code.size
+	Actor1Type3Code
+2 substreams for column `Actor2Name`:
+	Actor2Name.size
+	Actor2Name
+2 substreams for column `Actor2CountryCode`:
+	Actor2CountryCode.size
+	Actor2CountryCode
+2 substreams for column `Actor2Type1Code`:
+	Actor2Type1Code.size
+	Actor2Type1Code
+2 substreams for column `Actor2Type2Code`:
+	Actor2Type2Code.size
+	Actor2Type2Code
+2 substreams for column `Actor2Type3Code`:
+	Actor2Type3Code.size
+	Actor2Type3Code
+1 substreams for column `IsRootEvent`:
+	IsRootEvent
+2 substreams for column `EventCode`:
+	EventCode.size
+	EventCode
+2 substreams for column `EventBaseCode`:
+	EventBaseCode.size
+	EventBaseCode
+2 substreams for column `EventRootCode`:
+	EventRootCode.size
+	EventRootCode
+1 substreams for column `QuadClass`:
+	QuadClass
+1 substreams for column `GoldsteinScale`:
+	GoldsteinScale
+1 substreams for column `NumMentions`:
+	NumMentions
+1 substreams for column `NumSources`:
+	NumSources
+1 substreams for column `NumArticles`:
+	NumArticles
+1 substreams for column `AvgTone`:
+	AvgTone
+1 substreams for column `Actor1Geo_Type`:
+	Actor1Geo_Type
+2 substreams for column `Actor1Geo_CountryCode`:
+	Actor1Geo_CountryCode.size
+	Actor1Geo_CountryCode
+1 substreams for column `Actor1Geo_Lat`:
+	Actor1Geo_Lat
+1 substreams for column `Actor1Geo_Long`:
+	Actor1Geo_Long
+1 substreams for column `Actor2Geo_Type`:
+	Actor2Geo_Type
+2 substreams for column `Actor2Geo_CountryCode`:
+	Actor2Geo_CountryCode.size
+	Actor2Geo_CountryCode
+1 substreams for column `Actor2Geo_Lat`:
+	Actor2Geo_Lat
+1 substreams for column `Actor2Geo_Long`:
+	Actor2Geo_Long
+1 substreams for column `ActionGeo_Type`:
+	ActionGeo_Type
+2 substreams for column `ActionGeo_CountryCode`:
+	ActionGeo_CountryCode.size
+	ActionGeo_CountryCode
+1 substreams for column `ActionGeo_Lat`:
+	ActionGeo_Lat
+1 substreams for column `ActionGeo_Long`:
+	ActionGeo_Long
+2 substreams for column `SOURCEURL`:
+	SOURCEURL.size
+	SOURCEURL
+1 substreams for column `DATEADDED`:
+	DATEADDED

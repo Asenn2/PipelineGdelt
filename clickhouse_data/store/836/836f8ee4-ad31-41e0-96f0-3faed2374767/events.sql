@@ -1,0 +1,42 @@
+ATTACH TABLE _ UUID 'ebd22b28-8482-4f14-996a-22c5990fbe34'
+(
+    `GLOBALEVENTID` UInt64,
+    `SQLDATE` Date,
+    `Actor1Name` String,
+    `Actor1CountryCode` String,
+    `Actor1Type1Code` String,
+    `Actor1Type2Code` String,
+    `Actor1Type3Code` String,
+    `Actor2Name` String,
+    `Actor2CountryCode` String,
+    `Actor2Type1Code` String,
+    `Actor2Type2Code` String,
+    `Actor2Type3Code` String,
+    `IsRootEvent` Int8,
+    `EventCode` String,
+    `EventBaseCode` String,
+    `EventRootCode` String,
+    `QuadClass` Int8,
+    `GoldsteinScale` Float32,
+    `NumMentions` Int32,
+    `NumSources` Int32,
+    `NumArticles` Int32,
+    `AvgTone` Float32,
+    `Actor1Geo_Type` Int8,
+    `Actor1Geo_CountryCode` String,
+    `Actor1Geo_Lat` Float32,
+    `Actor1Geo_Long` Float32,
+    `Actor2Geo_Type` Int8,
+    `Actor2Geo_CountryCode` String,
+    `Actor2Geo_Lat` Float32,
+    `Actor2Geo_Long` Float32,
+    `ActionGeo_Type` Int8,
+    `ActionGeo_CountryCode` String,
+    `ActionGeo_Lat` Float32,
+    `ActionGeo_Long` Float32,
+    `SOURCEURL` String,
+    `DATEADDED` UInt64
+)
+ENGINE = MergeTree
+ORDER BY (SQLDATE, ActionGeo_CountryCode)
+SETTINGS index_granularity = 8192

@@ -46,11 +46,11 @@ df_clean = raw_stream.select(
     # _c9 = Locations (EXCLU)
     # _c10 = V2Locations (EXCLU)
     
-    col("_c11").alias("Persons"), # Tu as exclu V2Persons, on garde Persons
+    # col("_c11").alias("Persons"), # Tu as exclu V2Persons, on garde Persons
     
     # _c12 = V2Persons (EXCLU)
     
-    col("_c13").alias("Organizations"), # Tu as exclu V2Orgs, on garde Orgs
+    # col("_c13").alias("Organizations"), # Tu as exclu V2Orgs, on garde Orgs
     
     # _c14 = V2Organizations (EXCLU)
     
