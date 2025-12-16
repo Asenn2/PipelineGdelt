@@ -20,12 +20,10 @@ services:
           memory: 512M # <--- Suffisant pour un usage local
   # --- 2. INGESTION (ETL 1) ---
   nifi:
-    image: apache/nifi:latest
+    image: ziaadzi/nifi_gdelt:v3
     container_name: nifi
     ports:
-      - "8443:8443"
-    volumes:
-      - ./nifi_conf:/opt/nifi/nifi-current/conf
+      - "8443:8443"   
     environment:
       - NIFI_WEB_HTTP_PORT=
       - NIFI_WEB_HTTPS_PORT=8443
@@ -43,7 +41,7 @@ services:
           memory: 1536M # On laisse une marge de 500Mo au-dessus du Heap Java pour l'OS
   # --- 3. TRAITEMENT (Spark Cluster) ---
   spark:
-    image: bitnamilegacy/spark:3.5
+    image: ziaadzi/spark_gdelt:v2
     container_name: spark
     user: root # Important pour éviter les soucis de permission dans le conteneur unique
     environment:
@@ -54,15 +52,9 @@ services:
       - SPARK_SSL_ENABLED=no
       - SPARK_DRIVER_MEMORY=1G
       - SPARK_DAEMON_MEMORY=512m
-      - SPARK_DRIVER_BIND_ADDRESS=0.0.0.0
-      - SPARK_DRIVER_HOST=127.0.0.1
-      - SPARK_LOCAL_IP=127.0.0.1
     ports:
       - "8080:8080" # UI Spark (pour voir tes jobs)
       - "4040:4040" # UI du Job en cours
-    volumes:
-      - ./scripts:/app/scripts
-      - ./spark_ivy_cache:/root/.ivy2
     command: /bin/bash /app/scripts/start_pipelines.sh
     networks:
       - gdelt-net
@@ -95,16 +87,12 @@ services:
           memory: 3G # Suffisant pour tes requêtes GDELT actuelles
   # --- 5. VISUALISATION ---
   grafana:
-    image: grafana/grafana
+    image: ziaadzi/grafana_gdelt:v2
     container_name: grafana
     ports:
       - "3000:3000"
     environment:
-      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=grafana-clickhouse-datasource
-    volumes:
-      # 👇 On monte le dossier qu'on vient de remplir
-      - ./grafana_data:/var/lib/grafana
-      - ./grafana_plugins:/var/lib/grafana/plugins  
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=grafana-clickhouse-datasource  
     depends_on:
       - clickhouse
     dns:

@@ -1,4 +1,5 @@
 clickhouse_data/
 minio_data/
-spark_ivy_cache/
-grafana_data/
+grafana/
+spark/
+nifi/
