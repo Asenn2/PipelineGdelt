@@ -54,11 +54,15 @@ services:
       - SPARK_SSL_ENABLED=no
       - SPARK_DRIVER_MEMORY=1G
       - SPARK_DAEMON_MEMORY=512m
+      - SPARK_DRIVER_BIND_ADDRESS=0.0.0.0
+      - SPARK_DRIVER_HOST=127.0.0.1
+      - SPARK_LOCAL_IP=127.0.0.1
     ports:
       - "8080:8080" # UI Spark (pour voir tes jobs)
       - "4040:4040" # UI du Job en cours
     volumes:
       - ./scripts:/app/scripts
+      - ./spark_ivy_cache:/root/.ivy2
     command: /bin/bash /app/scripts/start_pipelines.sh
     networks:
       - gdelt-net
@@ -88,7 +92,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1G # Suffisant pour tes requêtes GDELT actuelles
+          memory: 3G # Suffisant pour tes requêtes GDELT actuelles
   # --- 5. VISUALISATION ---
   grafana:
     image: grafana/grafana

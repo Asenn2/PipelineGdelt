@@ -24,6 +24,8 @@ raw_stream = spark.readStream \
     .format("csv") \
     .option("sep", "\t") \
     .schema(gdelt_schema) \
+    .option("maxFilesPerTrigger",40) \
+    .option("maxFileAge","24h") \
     .load("s3a://gdelt-raw/events/")
 
 # --- 4. SELECTION & NETTOYAGE ---

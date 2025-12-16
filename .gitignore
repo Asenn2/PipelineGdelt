@@ -1,1 +1,3 @@
 clickhouse_data/
+minio_data/
+spark_ivy_cache/

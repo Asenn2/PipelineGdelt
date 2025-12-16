@@ -1,4 +1,4 @@
-ATTACH TABLE _ UUID 'ebd22b28-8482-4f14-996a-22c5990fbe34'
+ATTACH TABLE _ UUID '7cb64c74-2871-4a8e-a4ce-6b1ee79caaf9'
 (
     `GLOBALEVENTID` UInt64,
     `SQLDATE` Date,
@@ -34,9 +34,10 @@ ATTACH TABLE _ UUID 'ebd22b28-8482-4f14-996a-22c5990fbe34'
     `ActionGeo_CountryCode` String,
     `ActionGeo_Lat` Float32,
     `ActionGeo_Long` Float32,
-    `SOURCEURL` String,
-    `DATEADDED` UInt64
+    `DATEADDED` UInt64,
+    `SOURCEURL` String
 )
-ENGINE = MergeTree
-ORDER BY (SQLDATE, ActionGeo_CountryCode)
+ENGINE = ReplacingMergeTree
+PRIMARY KEY GLOBALEVENTID
+ORDER BY (GLOBALEVENTID, DATEADDED)
 SETTINGS index_granularity = 8192

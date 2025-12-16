@@ -23,6 +23,8 @@ raw_stream = spark.readStream \
     .format("csv") \
     .option("sep", "\t") \
     .schema(gdelt_mentions_schema) \
+    .option("maxFilesPerTrigger",40) \
+    .option("maxFileAge","24h") \
     .load("s3a://gdelt-raw/mentions/")
 
 # --- 4. SELECTION & NETTOYAGE (On garde uniquement ce que tu as demandé) ---

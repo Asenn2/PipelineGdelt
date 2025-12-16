@@ -1,4 +1,4 @@
-ATTACH TABLE _ UUID 'd8f59fdf-222c-4ffc-bdd6-0d2059e439f6'
+ATTACH TABLE _ UUID '8a7ce161-cc28-44fc-9f3e-71d5aaa64a33'
 (
     `GLOBALEVENTID` UInt64,
     `EventTimeDate` DateTime,
@@ -11,6 +11,7 @@ ATTACH TABLE _ UUID 'd8f59fdf-222c-4ffc-bdd6-0d2059e439f6'
     `MentionDocLen` Int32,
     `MentionDocTone` Float32
 )
-ENGINE = MergeTree
-ORDER BY (GLOBALEVENTID, MentionTimeDate)
+ENGINE = ReplacingMergeTree
+PRIMARY KEY (GLOBALEVENTID, MentionIdentifier)
+ORDER BY (GLOBALEVENTID, MentionIdentifier, MentionTimeDate)
 SETTINGS index_granularity = 8192

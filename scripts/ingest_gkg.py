@@ -24,6 +24,8 @@ raw_stream = spark.readStream \
     .format("csv") \
     .option("sep", "\t") \
     .schema(gdelt_gkg_schema) \
+    .option("maxFilesPerTrigger",1) \
+    .option("maxFileAge","24h") \
     .load("s3a://gdelt-raw/gkg/")
 
 # --- 4. SELECTION & FILTRAGE (Selon tes exclusions) ---
@@ -70,14 +72,20 @@ df_clean = raw_stream.select(
 # --- 5. ECRITURE VERS CLICKHOUSE ---
 def write_to_clickhouse(batch_df, batch_id):
     print(f"🧠 GKG Batch {batch_id} : Insertion de {batch_df.count()} lignes...")
-    
-    batch_df.write \
+    df_sequential = batch_df.repartition(1)
+
+    df_sequential.write \
         .format("jdbc") \
         .option("url", "jdbc:clickhouse://clickhouse:8123/default") \
         .option("dbtable", "gkg") \
         .option("user", "default") \
         .option("password", "1234") \
         .option("driver", "ru.yandex.clickhouse.ClickHouseDriver") \
+        .option("batchsize","50") \
+        .option("isolationLevel","NONE") \
+        .option("socket_timeout","600000") \
+        .option("compress","1") \
+        .option("input_format_parallel_parsing","0") \
         .mode("append") \
         .save()
     print(f"✅ Batch {batch_id} terminé.")
